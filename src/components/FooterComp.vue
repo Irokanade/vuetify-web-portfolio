@@ -1,5 +1,6 @@
+<!-- Footer.vue -->
 <template>
-  <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column" app>
+  <v-footer class="custom-footer text-center d-flex flex-column" app>
     <div>
       <v-btn
         v-for="icon in icons"
@@ -28,3 +29,10 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+.custom-footer {
+  /* background-color: #007BFF; */
+  color: white; /* Text color for contrast */
+}
+</style>
