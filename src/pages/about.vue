@@ -90,12 +90,16 @@ export default {
         { name: "Python", icon: "mdi-language-python" },
         { name: "Flask", icon: "mdi-language-python" },
         { name: "JavaScript", icon: "mdi-language-javascript" },
+        { name: "C", icon: "mdi-language-c" },
+        { name: "C++", icon: "mdi-language-c++" },
         { name: "AWS CDK", icon: "mdi-aws" },
         { name: "Postman", icon: "mdi-postman" },
         { name: "GitHub", icon: "mdi-github" },
         { name: "Docker", icon: "mdi-docker" },
         { name: "NodeJS", icon: "mdi-nodejs" },
         { name: "MongoDB", icon: "mdi-database" },
+        { name: "Linux", icon: "mdi-linux" },
+        { name: "Ansible", icon: "mdi-anisble" },
       ],
       experiences: [
         {

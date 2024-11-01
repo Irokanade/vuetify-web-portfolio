@@ -6,11 +6,12 @@
           class="project-card"
           :style="{ backgroundImage: `url(${project.image})` }"
           elevation="2"
+          @click="goToLink(project.link)"
         >
           <v-card-title class="project-title">{{ project.title }}</v-card-title>
-          <v-card-subtitle class="project-subtitle">{{
-            project.description
-          }}</v-card-subtitle>
+          <v-card-subtitle class="project-subtitle">
+            {{ project.description }}
+          </v-card-subtitle>
         </v-card>
       </v-col>
     </v-row>
@@ -25,42 +26,38 @@ export default {
         {
           title: "Software Engineering Course",
           description: "Vue3 + ElementPlus + Go + MongoDB",
-          image: "path/to/shinmei-image.jpg",
+          image: "",
+          link: "",
         },
         {
           title: "Multidimensional Dental Image Segmentation and Processing",
           description: "YOLO + SAM",
-          image: "path/to/hitachi-image.jpg",
+          image: "",
+          link: "",
         },
         {
           title: "Portfolio Website",
           description: "Vue3 + Vuetify + TypeScript",
-          image: "path/to/frincoin-image.jpg",
-        },
-        {
-          title: "Empty Card to test allignment",
-          description: "ReactJS + Kotlin(Ktor) + PostgreSQL + Azure",
-          image: "path/to/shinmei-image.jpg",
-        },
-        {
-          title: "Empty Card to test allignment",
-          description: "ReactJS + Kotlin(Ktor) + PostgreSQL + Azure",
-          image: "path/to/shinmei-image.jpg",
-        },
-        {
-          title: "Empty Card to test allignment",
-          description: "ReactJS + Kotlin(Ktor) + PostgreSQL + Azure",
-          image: "path/to/shinmei-image.jpg",
+          image: "",
+          link: "https://github.com/Irokanade/vuetify-web-portfolio",
         },
       ],
     };
+  },
+  methods: {
+    goToLink(link) {
+      if (link) {
+        window.open(link, "_blank"); // Opens the link in a new tab if it exists
+      } else {
+        console.warn("No link provided for this project."); // Warns if no link is set
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
 .project-card {
-  /* Existing styles */
   background-size: cover;
   background-position: center;
   color: white;
@@ -69,38 +66,37 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
   padding: 16px;
+  cursor: pointer; /* Makes it clear the card is clickable */
 }
 
 .project-card:hover {
-  transform: scale(1.05); /* Slight magnification on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Optional shadow effect */
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .project-title,
 .project-subtitle {
-  white-space: normal; /* Allow text to wrap */
-  word-wrap: break-word; /* Break words if needed */
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .project-title {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 8px;
-  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 4px 8px;
   border-radius: 4px;
 }
 
 .project-subtitle {
   font-size: 0.9rem;
-  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 4px 8px;
   border-radius: 4px;
 }

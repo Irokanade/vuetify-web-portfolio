@@ -22,14 +22,8 @@
 export default {
   data: () => ({
     icons: [
-      { name: "github", icon: "mdi-github", url: "https://github.com" },
-      { name: "twitter", icon: "mdi-twitter", url: "https://twitter.com" },
-      { name: "linkedin", icon: "mdi-linkedin", url: "https://linkedin.com" },
-      {
-        name: "instagram",
-        icon: "mdi-instagram",
-        url: "https://instagram.com",
-      },
+      { name: "github", icon: "mdi-github", url: "https://github.com/Irokanade" },
+      { name: "linkedin", icon: "mdi-linkedin", url: "https://www.linkedin.com/in/michael-jin-shun-leong-5764a7308" },
     ],
   }),
 };
