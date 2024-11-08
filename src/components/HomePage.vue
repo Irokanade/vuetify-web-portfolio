@@ -116,14 +116,6 @@ export default {
   border-radius: 50%;
 }
 
-.profile-section h1 {
-  color: white;
-}
-
-.profile-section p {
-  color: #ddd;
-}
-
 /* Project card styles */
 .project-card {
   background-size: cover;
