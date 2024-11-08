@@ -107,16 +107,6 @@ export default {
           role: "DevOps Intern",
           company: "Wisdom Garden Taiwan",
         },
-        {
-          date: "2023.09.01 - 2024.08.31",
-          role: "Software Engineer",
-          company: "Test",
-        },
-        {
-          date: "2021.11.01 - 2022.05.30",
-          role: "Frontend Developer",
-          company: "Another Company to test allignment",
-        },
       ],
       languages: ["English", "Chinese", "Malay"],
     };
