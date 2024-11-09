@@ -4,15 +4,19 @@
     <v-main>
       <v-container fluid class="py-10">
         <!-- Profile Section -->
-        <v-row align="center" justify="center" class="profile-section text-center mb-10">
+        <v-row
+          align="center"
+          justify="center"
+          class="profile-section text-center mb-10"
+        >
           <v-col cols="12" md="6">
             <v-avatar class="mr-4" size="80">
               <v-img src="@/assets/img/cat.jpg" alt="Profile Picture"></v-img>
             </v-avatar>
             <h1 class="display-1 mb-3">Michael Leong Jin Shun</h1>
             <p class="subtitle-1 mb-4">
-              Graduated with a degree in Computer Science from NTNU. 
-              Keen interest in Software Development and Artificial Intelligence.
+              Graduated with a degree in Computer Science from NTNU. Keen
+              interest in Software Development and Artificial Intelligence.
             </p>
             <v-btn color="blue" to="/about">About me</v-btn>
           </v-col>
@@ -26,16 +30,12 @@
           <v-col cols="12" md="8" class="mx-auto">
             <v-list two-line>
               <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>Test</v-list-item-title>
-                  <v-list-item-subtitle>Sep 22, 2022</v-list-item-subtitle>
-                </v-list-item-content>
+                <v-list-item-title>Test</v-list-item-title>
+                <v-list-item-subtitle>Sep 22, 2022</v-list-item-subtitle>
               </v-list-item>
               <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>Test 2</v-list-item-title>
-                  <v-list-item-subtitle>Jun 19, 2022</v-list-item-subtitle>
-                </v-list-item-content>
+                <v-list-item-title>Test 2</v-list-item-title>
+                <v-list-item-subtitle>Jun 19, 2022</v-list-item-subtitle>
               </v-list-item>
             </v-list>
             <v-btn outlined class="mt-4" color="blue">Read all</v-btn>
@@ -48,14 +48,22 @@
             <h2 class="font-weight-bold mb-3">Projects</h2>
           </v-col>
           <!-- Center the project cards inside a row with justify-center -->
-          <v-col v-for="(project, index) in projects" :key="index" cols="12" md="4" class="d-flex justify-center">
+          <v-col
+            v-for="(project, index) in projects"
+            :key="index"
+            cols="12"
+            md="4"
+            class="d-flex justify-center"
+          >
             <v-card
               class="project-card"
               :style="{ backgroundImage: `url(${project.image})` }"
               elevation="2"
               @click="goToLink(project.link)"
             >
-              <v-card-title class="project-title">{{ project.title }}</v-card-title>
+              <v-card-title class="project-title">{{
+                project.title
+              }}</v-card-title>
               <v-card-subtitle class="project-subtitle">
                 {{ project.description }}
               </v-card-subtitle>
@@ -65,7 +73,9 @@
 
         <v-row justify="center" class="mb-10">
           <v-col cols="auto" class="text-center">
-            <v-btn color="blue" to="/projects" class="view-all-btn">View All</v-btn>
+            <v-btn color="blue" to="/projects" class="view-all-btn"
+              >View All</v-btn
+            >
           </v-col>
         </v-row>
       </v-container>
@@ -126,12 +136,15 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
   /* padding: 16px; */
   cursor: pointer; /* Makes it clear the card is clickable */
+  width: 100%;
 }
 
 .project-card:hover {

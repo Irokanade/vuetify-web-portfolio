@@ -66,12 +66,15 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
   padding: 16px;
   cursor: pointer; /* Makes it clear the card is clickable */
+  width: 100%;
 }
 
 .project-card:hover {

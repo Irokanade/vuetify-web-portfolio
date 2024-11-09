@@ -1,6 +1,6 @@
 <!-- Footer.vue -->
 <template>
-  <v-footer class="custom-footer text-center d-flex flex-column" app>
+  <v-footer class="text-center d-flex flex-column" app>
     <div>
       <v-btn
         v-for="icon in icons"
@@ -23,16 +23,17 @@
 export default {
   data: () => ({
     icons: [
-      { name: "github", icon: "mdi-github", url: "https://github.com/Irokanade" },
-      { name: "linkedin", icon: "mdi-linkedin", url: "https://www.linkedin.com/in/michael-jin-shun-leong-5764a7308" },
+      {
+        name: "github",
+        icon: "mdi-github",
+        url: "https://github.com/Irokanade",
+      },
+      {
+        name: "linkedin",
+        icon: "mdi-linkedin",
+        url: "https://www.linkedin.com/in/michael-jin-shun-leong-5764a7308",
+      },
     ],
   }),
 };
 </script>
-
-<style scoped>
-.custom-footer {
-  /* background-color: #007BFF; */
-  color: white; /* Text color for contrast */
-}
-</style>

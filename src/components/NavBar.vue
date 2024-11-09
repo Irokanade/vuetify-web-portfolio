@@ -1,12 +1,11 @@
 <template>
   <v-app-bar app color="#1a73e8">
-     <router-link to="/">
+    <router-link to="/">
       <v-avatar class="mr-4" to="/">
         <v-img alt="cat" src="@/assets/img/cat.jpg"></v-img>
       </v-avatar>
-     </router-link>
-    
-    
+    </router-link>
+
     <!-- Navbar Title (if needed) -->
     <!-- <v-toolbar-title class="white--text">{{ appTitle }}</v-toolbar-title> -->
 
@@ -20,15 +19,23 @@
       </v-list-item>
     </v-list> -->
 
-    
-
     <!-- Spacer -->
     <v-spacer></v-spacer>
 
     <!-- Right-Aligned Icons -->
-    <v-btn><v-icon>mdi-github</v-icon></v-btn>
-    <v-btn @click="toggleTheme"><v-icon>mdi-weather-night</v-icon></v-btn>
-    <v-btn><v-icon>mdi-clock-outline</v-icon></v-btn>
+    <v-btn href="https://github.com/Irokanade" target="_blank"
+      ><v-icon>mdi-github</v-icon></v-btn
+    >
+    <v-btn
+      href="https://www.linkedin.com/in/michael-jin-shun-leong-5764a7308"
+      target="_blank"
+      ><v-icon>mdi-linkedin</v-icon></v-btn
+    >
+    <v-btn @click="toggleTheme">
+      <v-icon v-if="theme.global.current.value.dark">mdi-weather-night</v-icon>
+      <v-icon v-else>mdi-white-balance-sunny</v-icon>
+    </v-btn>
+    <!-- <v-btn><v-icon>mdi-clock-outline</v-icon></v-btn> -->
   </v-app-bar>
 </template>
 
@@ -38,10 +45,9 @@ import { useTheme } from "vuetify";
 
 const theme = useTheme();
 
-function toggleTheme () {
-  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+function toggleTheme() {
+  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
 }
-
 </script>
 
 <style scoped>
@@ -66,10 +72,5 @@ function toggleTheme () {
 /* Right-aligned icon color */
 .icon-color {
   color: white;
-}
-
-/* Avatar margin */
-.mr-4 {
-  margin-right: 16px;
 }
 </style>

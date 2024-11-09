@@ -9,7 +9,7 @@
           class="resume-image"
           contain
         ></v-img>
-        
+
         <!-- Second page of the resume -->
         <v-img
           src="@/assets/img/MichaelLeongJinShunResume_en_page_2.png"
@@ -22,9 +22,7 @@
   </v-container>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .resume-container {
