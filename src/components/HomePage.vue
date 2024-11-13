@@ -23,7 +23,7 @@
         </v-row>
 
         <!-- Writing Section -->
-        <v-row class="mb-10">
+        <!-- <v-row class="mb-10">
           <v-col cols="12" class="text-center">
             <h2 class="font-weight-bold mb-3">Writing</h2>
           </v-col>
@@ -40,7 +40,7 @@
             </v-list>
             <v-btn outlined class="mt-4" color="blue">Read all</v-btn>
           </v-col>
-        </v-row>
+        </v-row> -->
 
         <!-- Projects Section -->
         <v-row class="mb-10" justify="center" align="center">
@@ -78,6 +78,16 @@
             >
           </v-col>
         </v-row>
+
+        <v-row class="mb-10" justify="center" align="center">
+          <v-col cols="12" class="text-center">
+            <h2 class="font-weight-bold mb-3">Connect</h2>
+            <p class="subtitle-1 mb-4">
+              <a class="email-link" href="mailto:michaeljs.leong@gmail.com" target="_self">michaeljs.leong@gmail.com</a>
+            </p>
+          </v-col>
+        </v-row>
+
       </v-container>
     </v-main>
   </v-app>
@@ -91,7 +101,7 @@ export default {
         {
           title: "Software Engineering Course",
           description: "Vue3 + ElementPlus + Go + MongoDB",
-          image: "",
+          image: "src/assets/img/ntnu.png",
           link: "",
         },
         {
@@ -172,5 +182,10 @@ export default {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 4px 8px;
   border-radius: 4px;
+}
+
+.email-link {
+  color: inherit; /* Keeps the link color same as surrounding text */
+  text-decoration: none; /* Removes underline */
 }
 </style>

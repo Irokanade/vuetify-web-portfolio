@@ -26,7 +26,7 @@ export default {
         {
           title: "Software Engineering Course",
           description: "Vue3 + ElementPlus + Go + MongoDB",
-          image: "",
+          image: "src/assets/img/ntnu.png",
           link: "",
         },
         {
