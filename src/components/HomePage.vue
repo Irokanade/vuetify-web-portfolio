@@ -94,6 +94,8 @@
 </template>
 
 <script>
+import ntnuImage from "@/assets/img/ntnu.png";
+
 export default {
   data() {
     return {
@@ -101,7 +103,7 @@ export default {
         {
           title: "Software Engineering Course",
           description: "Vue3 + ElementPlus + Go + MongoDB",
-          image: "src/assets/img/ntnu.png",
+          image: ntnuImage,
           link: "",
         },
         {
