@@ -13,6 +13,7 @@
     <router-link to="/about" class="navbar-link">About</router-link>
     <router-link to="/projects" class="navbar-link">Projects</router-link>
     <router-link to="/resume" class="navbar-link">Resume</router-link>
+    <router-link to="/blog" class="navbar-link">Blog</router-link>
     <!-- <v-list class="navbar-list">
       <v-list-item v-for="item in menuItems" :key="item.title" :to="item.path" link class="navbar-item">
         <v-list-item-title v-text="item.title"></v-list-item-title>
