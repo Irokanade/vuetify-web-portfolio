@@ -91,6 +91,8 @@
 </template>
 
 <script>
+import ProjectCard from "@/components/ProjectCard.vue";
+
 import softEngProject from "@/assets/img/soft-eng-project.png";
 import dentalImageProject from "@/assets/img/dental-image-project.png"
 
