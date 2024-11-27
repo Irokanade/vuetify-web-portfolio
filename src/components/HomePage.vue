@@ -55,12 +55,12 @@
             md="4"
             class="d-flex justify-center"
           >
-          <ProjectCard
-          :image="project.image"
-          :project="project.project"
-          :title="project.title"
-          :description="project.description"
-        />
+            <ProjectCard
+              :image="project.image"
+              :project="project.project"
+              :title="project.title"
+              :description="project.description"
+            />
           </v-col>
         </v-row>
 
@@ -94,7 +94,7 @@
 import ProjectCard from "@/components/ProjectCard.vue";
 
 import softEngProject from "@/assets/img/soft-eng-project.png";
-import dentalImageProject from "@/assets/img/dental-image-project.png"
+import dentalImageProject from "@/assets/img/dental-image-project.png";
 
 export default {
   data() {
@@ -112,7 +112,7 @@ export default {
           description: "YOLO + SAM",
           image: dentalImageProject,
         },
-      ]
+      ],
     };
   },
 };
