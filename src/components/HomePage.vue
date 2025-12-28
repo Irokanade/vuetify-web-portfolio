@@ -47,9 +47,9 @@
           <v-col cols="12" class="text-center">
             <h2 class="font-weight-bold mb-3">Projects</h2>
           </v-col>
-          <!-- Center the project cards inside a row with justify-center -->
+          
           <v-col
-            v-for="(project, index) in projects"
+            v-for="(project, index) in featuredProjects"
             :key="index"
             cols="12"
             md="4"
@@ -57,7 +57,7 @@
           >
             <ProjectCard
               :image="project.image"
-              :project="project.project"
+              :project="project.id" 
               :title="project.title"
               :description="project.description"
             />
@@ -91,26 +91,12 @@
 </template>
 
 <script>
-import softEngProject from "@/assets/img/soft-eng-project.png";
-import dentalImageProject from "@/assets/img/dental-image-project.png";
+import { projects } from "@/data/projects.js";
 
 export default {
   data() {
     return {
-      projects: [
-        {
-          project: "software-engineering-course",
-          title: "Software Engineering Course",
-          description: "Vue3 + ElementPlus + Go + MongoDB",
-          image: softEngProject,
-        },
-        {
-          project: "multidimensional-dental-image-segmentation-and-processing",
-          title: "Multidimensional Dental Image Segmentation and Processing",
-          description: "YOLO + SAM",
-          image: dentalImageProject,
-        },
-      ],
+      featuredProjects: projects.slice(0, 2),
     };
   },
 };
