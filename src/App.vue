@@ -1,4 +1,5 @@
 <template>
+  <Analytics />
   <v-app>
     <NavBar />
     <v-main>
@@ -9,6 +10,9 @@
 </template>
 
 <script lang="ts" setup>
+import { inject } from '@vercel/analytics';
 import NavBar from "./components/NavBar.vue";
 // import FooterComp from "./components/FooterComp.vue";
+
+inject();
 </script>
