@@ -1,6 +1,7 @@
 import softEngProject from "@/assets/img/soft-eng-project.png";
 import dentalImageProject from "@/assets/img/dental-image-project.png";
 import iroChess from "@/assets/img/iro-chess.png";
+import studyLoanCalc from "@/assets/img/study-loan-calculator.png";
 
 export const projects = [
   {
@@ -28,5 +29,12 @@ export const projects = [
     image: "null",
     link: "https://github.com/Irokanade/vuetify-web-portfolio",
     description: `This is the website hope you like it :)`,
+  },
+  {
+    id: "study-loan-calculator",
+    title: "Study Loan Calculator",
+    image: studyLoanCalc,
+    link: "/study-loan-calculator.html",
+    description: `Simple study loan calculator done in static html and javascript.`,
   },
 ];

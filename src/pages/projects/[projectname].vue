@@ -11,7 +11,7 @@
       ></v-img>
       
       <p class="subtitle-1 mb-4">{{ project.description }}</p>
-      <v-btn v-if="project.link" :href="project.link" target="_blank">GitHub</v-btn>
+      <v-btn v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer">Link</v-btn>
     </v-col>
   </v-row>
   <div v-else>

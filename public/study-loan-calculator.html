@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Education Loan Calculator</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+  h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  .subtitle { color: #666; margin-bottom: 24px; font-size: 0.9rem; }
+
+  /* Inputs panel */
+  .inputs-panel {
+    background: #fff; border-radius: 12px; padding: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 24px;
+  }
+  .inputs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .input-group { display: flex; flex-direction: column; }
+  .input-group label {
+    font-size: 0.8rem; font-weight: 600; color: #555;
+    margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .input-group input, .input-group select {
+    padding: 10px 12px; border: 1.5px solid #ddd; border-radius: 8px;
+    font-size: 0.95rem; transition: border-color 0.2s;
+  }
+  .input-group input:focus, .input-group select:focus {
+    outline: none; border-color: #ffc107;
+  }
+  .input-hint { font-size: 0.72rem; color: #999; margin-top: 3px; }
+
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; color: #ffc107; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 8px; margin-top: 8px;
+    grid-column: 1 / -1; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px;
+  }
+
+  /* Summary cards */
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card {
+    background: #fff; border-radius: 12px; padding: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08); text-align: center;
+  }
+  .card .label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .card .value { font-size: 1.5rem; font-weight: 700; }
+  .card .value.primary { color: #e65100; }
+  .card .value.green { color: #2e7d32; }
+  .card .value.blue { color: #1565c0; }
+  .card .value.purple { color: #6a1b9a; }
+
+  /* Charts area */
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .chart-box {
+    background: #fff; border-radius: 12px; padding: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .chart-box h3 { font-size: 0.9rem; margin-bottom: 16px; color: #333; }
+  .chart-box canvas { width: 100% !important; }
+
+  /* Amortization table */
+  .table-container {
+    background: #fff; border-radius: 12px; padding: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08); overflow-x: auto;
+  }
+  .table-container h3 { font-size: 0.9rem; margin-bottom: 4px; }
+  .table-subtitle { font-size: 0.78rem; color: #888; margin-bottom: 12px; }
+  .table-controls { margin-bottom: 12px; display: flex; gap: 8px; align-items: center; }
+  .table-controls button {
+    padding: 6px 14px; border: 1.5px solid #ddd; border-radius: 6px;
+    background: #fff; cursor: pointer; font-size: 0.8rem; transition: all 0.2s;
+  }
+  .table-controls button.active { background: #ffc107; border-color: #ffc107; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  thead th {
+    text-align: left; padding: 10px 12px; border-bottom: 2px solid #eee;
+    font-size: 0.72rem; text-transform: uppercase; color: #888; letter-spacing: 0.3px;
+    position: sticky; top: 0; background: #fff;
+  }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid #f5f5f5; }
+  tbody tr:hover { background: #fffde7; }
+  tbody tr.study-row { background: #fff8e1; }
+  tbody tr.grace-row { background: #f3e5f5; }
+  .phase-tag {
+    font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;
+    font-weight: 600; display: inline-block;
+  }
+  .phase-study { background: #fff3cd; color: #856404; }
+  .phase-grace { background: #e8daef; color: #6c3483; }
+  .phase-repay { background: #d4edda; color: #155724; }
+  .text-right { text-align: right; }
+
+  @media (max-width: 768px) {
+    .charts { grid-template-columns: 1fr; }
+    .inputs-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .inputs-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Education Loan Calculator</h1>
+  <p class="subtitle">Amortization schedule with study period deferment</p>
+
+  <div class="inputs-panel">
+    <div class="inputs-grid">
+      <div class="section-label">Loan Details</div>
+      <div class="input-group">
+        <label>Loan Amount (RM)</label>
+        <input type="number" id="loanAmount" value="400000" min="1000" step="1000">
+      </div>
+      <div class="input-group">
+        <label>Annual Interest Rate (%)</label>
+        <input type="number" id="interestRate" value="4.75" min="0" step="0.01">
+        <span class="input-hint">e.g. SBR 2.75% + spread 2.00% = 4.75%</span>
+      </div>
+      <div class="input-group">
+        <label>Total Loan Tenure (years)</label>
+        <input type="number" id="loanTenure" value="20" min="1" max="30">
+      </div>
+      <div class="input-group">
+        <label>Compounding</label>
+        <select id="compounding">
+          <option value="12" selected>Monthly</option>
+          <option value="365">Daily</option>
+          <option value="4">Quarterly</option>
+          <option value="2">Semi-Annually</option>
+          <option value="1">Annually</option>
+        </select>
+      </div>
+
+      <div class="section-label">Study &amp; Grace Period</div>
+      <div class="input-group">
+        <label>Study Period (years)</label>
+        <input type="number" id="studyPeriod" value="2" min="0" max="10" step="0.5">
+      </div>
+      <div class="input-group">
+        <label>Grace Period (months)</label>
+        <input type="number" id="gracePeriod" value="6" min="0" max="24">
+        <span class="input-hint">After study ends, before full repayment starts</span>
+      </div>
+      <div class="input-group">
+        <label>During Study &amp; Grace</label>
+        <select id="studyPayment">
+          <option value="interest" selected>Interest Only</option>
+          <option value="none">No Payment (interest capitalised)</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Disbursement</label>
+        <select id="disbursement">
+          <option value="lumpsum" selected>Lump Sum (all at once)</option>
+          <option value="yearly">Yearly (equal parts)</option>
+        </select>
+        <span class="input-hint">How the loan is released</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="card"><div class="label">Monthly Instalment (After Study)</div><div class="value primary" id="monthlyPayment">-</div></div>
+    <div class="card"><div class="label">Total Interest Paid</div><div class="value blue" id="totalInterest">-</div></div>
+    <div class="card"><div class="label">Total Amount Paid</div><div class="value purple" id="totalPayment">-</div></div>
+    <div class="card"><div class="label">Repayment Period</div><div class="value green" id="repaymentPeriod">-</div></div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-box">
+      <h3>Payment Breakdown</h3>
+      <canvas id="pieChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Balance Over Time</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <h3>Amortization Schedule</h3>
+    <p class="table-subtitle">Full month-by-month breakdown of your loan repayment</p>
+    <div class="table-controls">
+      <button id="btnMonthly" class="active" onclick="setView('monthly')">Monthly</button>
+      <button id="btnYearly" onclick="setView('yearly')">Yearly</button>
+    </div>
+    <div style="max-height: 600px; overflow-y: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Phase</th>
+            <th class="text-right">Payment</th>
+            <th class="text-right">Principal</th>
+            <th class="text-right">Interest</th>
+            <th class="text-right">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="amortBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg/P5HG5lF1urn4" crossorigin="anonymous"></script>
+<script>
+const $ = id => document.getElementById(id);
+let currentView = 'monthly';
+let scheduleData = [];
+let pieChart, lineChart;
+
+const inputs = ['loanAmount','interestRate','loanTenure','compounding','studyPeriod','gracePeriod','studyPayment','disbursement'];
+inputs.forEach(id => $(id).addEventListener('input', calculate));
+inputs.forEach(id => $(id).addEventListener('change', calculate));
+
+function fmt(n) {
+  return n.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function calculate() {
+  const P = parseFloat($('loanAmount').value) || 0;
+  const annualRate = (parseFloat($('interestRate').value) || 0) / 100;
+  const tenureYears = parseFloat($('loanTenure').value) || 1;
+  const compFreq = parseInt($('compounding').value);
+  const studyYears = parseFloat($('studyPeriod').value) || 0;
+  const graceMonths = parseInt($('gracePeriod').value) || 0;
+  const studyPayType = $('studyPayment').value;
+  const disbType = $('disbursement').value;
+
+  const studyMonths = Math.round(studyYears * 12);
+  const deferMonths = studyMonths + graceMonths;
+  const repayMonths = Math.round(tenureYears * 12) - deferMonths;
+
+  if (repayMonths <= 0 || P <= 0 || annualRate < 0) {
+    $('monthlyPayment').textContent = 'Invalid';
+    $('totalInterest').textContent = '-';
+    $('totalPayment').textContent = '-';
+    $('repaymentPeriod').textContent = '-';
+    $('amortBody').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:#999;">Repayment period must be positive. Reduce study/grace period or increase tenure.</td></tr>';
+    return;
+  }
+
+  // Effective monthly rate from compounding
+  const effectiveAnnual = Math.pow(1 + annualRate / compFreq, compFreq) - 1;
+  const monthlyRate = Math.pow(1 + effectiveAnnual, 1/12) - 1;
+
+  // Build schedule
+  scheduleData = [];
+  let balance = 0;
+  let totalInterestPaid = 0;
+  let totalPaid = 0;
+
+  // Disbursement schedule
+  const disbursements = [];
+  if (disbType === 'yearly' && studyYears > 0) {
+    const parts = Math.ceil(studyYears);
+    const perPart = P / parts;
+    for (let i = 0; i < parts; i++) {
+      disbursements.push({ month: i * 12, amount: perPart });
+    }
+  } else {
+    disbursements.push({ month: 0, amount: P });
+  }
+
+  // Disbursements are scheduled by their 0-based start month. Apply every
+  // disbursement due at or before `monthStart` that hasn't been released yet.
+  // disbursements are already in ascending month order.
+  let disbIdx = 0;
+  function releaseDisbursements(monthStart) {
+    while (disbIdx < disbursements.length && disbursements[disbIdx].month <= monthStart) {
+      balance += disbursements[disbIdx].amount;
+      disbIdx++;
+    }
+  }
+
+  // Phase 1 & 2: Study + Grace (deferment period)
+  for (let m = 1; m <= deferMonths; m++) {
+    releaseDisbursements(m - 1);
+
+    const interest = balance * monthlyRate;
+    let payment = 0;
+    let principal = 0;
+
+    if (studyPayType === 'interest') {
+      payment = interest;
+      principal = 0;
+    } else {
+      // Capitalise interest
+      balance += interest;
+      principal = 0;
+      payment = 0;
+    }
+
+    totalInterestPaid += interest;
+    totalPaid += payment;
+
+    const phase = m <= studyMonths ? 'Study' : 'Grace';
+    scheduleData.push({ month: m, phase, payment, principal, interest, balance });
+  }
+
+  // Release any disbursements not yet applied (e.g. when there is no
+  // deferment period, so the loop above never ran).
+  releaseDisbursements(Infinity);
+
+  // Calculate monthly instalment for repayment period.
+  // At 0% the standard amortization formula is 0/0, so fall back to straight-line.
+  const M = monthlyRate === 0
+    ? balance / repayMonths
+    : balance * monthlyRate * Math.pow(1 + monthlyRate, repayMonths) / (Math.pow(1 + monthlyRate, repayMonths) - 1);
+
+  // Phase 3: Full repayment
+  for (let m = 1; m <= repayMonths; m++) {
+    const interest = balance * monthlyRate;
+    const principal = M - interest;
+    balance -= principal;
+    if (balance < 0) balance = 0;
+
+    totalInterestPaid += interest;
+    totalPaid += M;
+
+    scheduleData.push({ month: deferMonths + m, phase: 'Repayment', payment: M, principal, interest, balance });
+  }
+
+  // Update summary
+  $('monthlyPayment').textContent = 'RM ' + fmt(M);
+  $('totalInterest').textContent = 'RM ' + fmt(totalInterestPaid);
+  $('totalPayment').textContent = 'RM ' + fmt(totalPaid);
+
+  const repayYears = Math.floor(repayMonths / 12);
+  const repayRemMonths = repayMonths % 12;
+  $('repaymentPeriod').textContent = repayYears + 'y ' + repayRemMonths + 'm (after study)';
+
+  renderTable();
+  renderCharts(P, totalInterestPaid);
+}
+
+function renderTable() {
+  const tbody = $('amortBody');
+  let html = '';
+
+  if (currentView === 'monthly') {
+    for (const row of scheduleData) {
+      const cls = row.phase === 'Study' ? 'study-row' : row.phase === 'Grace' ? 'grace-row' : '';
+      const tag = row.phase === 'Study' ? 'phase-study' : row.phase === 'Grace' ? 'phase-grace' : 'phase-repay';
+      html += `<tr class="${cls}">
+        <td>${row.month}</td>
+        <td><span class="phase-tag ${tag}">${row.phase}</span></td>
+        <td class="text-right">RM ${fmt(row.payment)}</td>
+        <td class="text-right">RM ${fmt(row.principal)}</td>
+        <td class="text-right">RM ${fmt(row.interest)}</td>
+        <td class="text-right">RM ${fmt(row.balance)}</td>
+      </tr>`;
+    }
+  } else {
+    // Yearly summary
+    const years = {};
+    for (const row of scheduleData) {
+      const y = Math.ceil(row.month / 12);
+      if (!years[y]) years[y] = { payment: 0, principal: 0, interest: 0, balance: 0, phase: row.phase };
+      years[y].payment += row.payment;
+      years[y].principal += row.principal;
+      years[y].interest += row.interest;
+      years[y].balance = row.balance;
+      if (row.phase === 'Repayment') years[y].phase = 'Repayment';
+      else if (row.phase === 'Grace' && years[y].phase !== 'Repayment') years[y].phase = 'Grace';
+    }
+    for (const [y, row] of Object.entries(years)) {
+      const tag = row.phase === 'Study' ? 'phase-study' : row.phase === 'Grace' ? 'phase-grace' : 'phase-repay';
+      html += `<tr>
+        <td>Year ${y}</td>
+        <td><span class="phase-tag ${tag}">${row.phase}</span></td>
+        <td class="text-right">RM ${fmt(row.payment)}</td>
+        <td class="text-right">RM ${fmt(row.principal)}</td>
+        <td class="text-right">RM ${fmt(row.interest)}</td>
+        <td class="text-right">RM ${fmt(row.balance)}</td>
+      </tr>`;
+    }
+  }
+  tbody.innerHTML = html;
+}
+
+function setView(view) {
+  currentView = view;
+  $('btnMonthly').classList.toggle('active', view === 'monthly');
+  $('btnYearly').classList.toggle('active', view === 'yearly');
+  renderTable();
+}
+
+function renderCharts(principal, interest) {
+  // Pie chart
+  const pieCtx = $('pieChart').getContext('2d');
+  if (pieChart) pieChart.destroy();
+  pieChart = new Chart(pieCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Principal', 'Total Interest'],
+      datasets: [{
+        data: [principal, interest],
+        backgroundColor: ['#4caf50', '#ff9800'],
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ': RM ' + fmt(ctx.parsed)
+          }
+        }
+      }
+    }
+  });
+
+  // Line chart — balance over time
+  const lineCtx = $('lineChart').getContext('2d');
+  if (lineChart) lineChart.destroy();
+
+  const labels = [];
+  const balances = [];
+  const cumInterest = [];
+  let runningInt = 0;
+  for (const row of scheduleData) {
+    runningInt += row.interest;
+    if (row.month % 6 === 0 || row.month === 1) {
+      labels.push('M' + row.month);
+      balances.push(Math.round(row.balance));
+      cumInterest.push(Math.round(runningInt));
+    }
+  }
+  // Add last month
+  const last = scheduleData[scheduleData.length - 1];
+  if (last && last.month % 6 !== 0) {
+    labels.push('M' + last.month);
+    balances.push(Math.round(last.balance));
+    cumInterest.push(Math.round(runningInt));
+  }
+
+  lineChart = new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Outstanding Balance',
+          data: balances,
+          borderColor: '#1565c0',
+          backgroundColor: 'rgba(21,101,192,0.1)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+        },
+        {
+          label: 'Cumulative Interest',
+          data: cumInterest,
+          borderColor: '#ff9800',
+          backgroundColor: 'rgba(255,152,0,0.1)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.dataset.label + ': RM ' + ctx.parsed.y.toLocaleString()
+          }
+        }
+      },
+      scales: {
+        y: {
+          ticks: {
+            callback: v => 'RM ' + (v/1000).toFixed(0) + 'k'
+          }
+        }
+      }
+    }
+  });
+}
+
+// Initial calculation
+calculate();
+</script>
+</body>
+</html>
