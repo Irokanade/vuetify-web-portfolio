@@ -15,8 +15,9 @@
             </v-avatar>
             <h1 class="display-1 mb-3">Michael Leong Jin Shun</h1>
             <p class="subtitle-1 mb-4">
-              Graduated with a degree in Computer Science from NTNU. Keen
-              interest in Software Development and Artificial Intelligence.
+              C++ enjoyer. 
+              Recommends C++ concurrency in action. 
+              Currently obsessed with lock-free programming.
             </p>
             <v-btn color="blue" to="/about">About me</v-btn>
           </v-col>
