@@ -12,7 +12,6 @@
     <!-- Navbar Links -->
     <router-link to="/about" class="navbar-link">About</router-link>
     <router-link to="/projects" class="navbar-link">Projects</router-link>
-    <router-link to="/resume" class="navbar-link">Resume</router-link>
     <!-- <v-list class="navbar-list">
       <v-list-item v-for="item in menuItems" :key="item.title" :to="item.path" link class="navbar-item">
         <v-list-item-title v-text="item.title"></v-list-item-title>
