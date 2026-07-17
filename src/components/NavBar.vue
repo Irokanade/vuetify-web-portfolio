@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="#1a73e8">
+  <v-app-bar app color="primary">
     <router-link to="/">
       <v-avatar class="mr-4" to="/">
         <v-img alt="cat" src="@/assets/img/cat.jpg"></v-img>
@@ -50,14 +50,8 @@ function toggleTheme() {
 </script>
 
 <style scoped>
-/* Navbar color */
-.v-app-bar {
-  background-color: #1a73e8; /* Blue background */
-}
-
-/* Text links styling */
 .navbar-link {
-  color: white;
+  color: inherit;
   margin-right: 20px;
   font-weight: 500;
   text-decoration: none;
@@ -66,10 +60,5 @@ function toggleTheme() {
 
 .navbar-link:hover {
   text-decoration: underline;
-}
-
-/* Right-aligned icon color */
-.icon-color {
-  color: white;
 }
 </style>

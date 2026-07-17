@@ -47,7 +47,7 @@ const props = defineProps({
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  border-radius: 8px;
+  border-radius: 5px;
   overflow: hidden;
   text-align: center;
   padding: 16px;

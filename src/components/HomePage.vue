@@ -13,20 +13,20 @@
             <v-avatar class="mr-4" size="80">
               <v-img src="@/assets/img/cat.jpg" alt="Profile Picture"></v-img>
             </v-avatar>
-            <h1 class="display-1 mb-3">Michael Leong Jin Shun</h1>
-            <p class="subtitle-1 mb-4">
+            <h1 class="text-h4 mb-3 text-primary">Michael Leong Jin Shun</h1>
+            <p class="text-subtitle-1 mb-4">
               C++ enjoyer. 
               Recommends C++ concurrency in action. 
               Currently obsessed with lock-free programming.
             </p>
-            <v-btn color="blue" to="/about">About me</v-btn>
+            <v-btn color="primary" to="/about">About me</v-btn>
           </v-col>
         </v-row>
 
         <!-- Writing Section -->
         <!-- <v-row class="mb-10">
           <v-col cols="12" class="text-center">
-            <h2 class="font-weight-bold mb-3">Writing</h2>
+            <h2 class="font-weight-bold mb-3 text-primary">Writing</h2>
           </v-col>
           <v-col cols="12" md="8" class="mx-auto">
             <v-list two-line>
@@ -39,14 +39,14 @@
                 <v-list-item-subtitle>Jun 19, 2022</v-list-item-subtitle>
               </v-list-item>
             </v-list>
-            <v-btn outlined class="mt-4" color="blue">Read all</v-btn>
+            <v-btn outlined class="mt-4" color="primary">Read all</v-btn>
           </v-col>
         </v-row> -->
 
         <!-- Projects Section -->
         <v-row class="mb-10" justify="center" align="center">
           <v-col cols="12" class="text-center">
-            <h2 class="font-weight-bold mb-3">Projects</h2>
+            <h2 class="font-weight-bold mb-3 text-primary">Projects</h2>
           </v-col>
           
           <v-col
@@ -67,7 +67,7 @@
 
         <v-row justify="center" class="mb-10">
           <v-col cols="auto" class="text-center">
-            <v-btn color="blue" to="/projects" class="view-all-btn"
+            <v-btn color="primary" to="/projects" class="view-all-btn"
               >View All</v-btn
             >
           </v-col>
@@ -75,8 +75,8 @@
 
         <v-row class="mb-10" justify="center" align="center">
           <v-col cols="12" class="text-center">
-            <h2 class="font-weight-bold mb-3">Connect</h2>
-            <p class="subtitle-1 mb-4">
+            <h2 class="font-weight-bold mb-3 text-primary">Connect</h2>
+            <p class="text-subtitle-1 mb-4">
               <a
                 class="email-link"
                 href="mailto:michaeljs.leong@gmail.com"

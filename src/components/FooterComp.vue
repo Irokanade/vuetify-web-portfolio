@@ -1,6 +1,6 @@
 <!-- Footer.vue -->
 <template>
-  <v-footer class="text-center d-flex flex-column" app>
+  <v-footer color="primary" class="text-center d-flex flex-column" app>
     <div>
       <v-btn
         v-for="icon in icons"
@@ -13,7 +13,7 @@
       ></v-btn>
     </div>
 
-    <v-divider></v-divider>
+    <v-divider class="footer-divider"></v-divider>
 
     <div>{{ new Date().getFullYear() }} Michael Leong Jin Shun</div>
   </v-footer>
@@ -37,3 +37,11 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+.footer-divider {
+  border-color: currentColor;
+  opacity: 0.3;
+  width: 100%;
+}
+</style>

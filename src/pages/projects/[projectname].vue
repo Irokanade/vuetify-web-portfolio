@@ -1,8 +1,8 @@
 <template>
   <v-row align="center" justify="center" class="text-left mb-10" v-if="project">
     <v-col cols="12" md="6">
-      <v-btn to="/projects" class="mt-3 mb-3" color="blue">back</v-btn>
-      <h1 class="display-1 mb-3">{{ project.title }}</h1>
+      <v-btn to="/projects" class="mt-3 mb-3" color="primary">back</v-btn>
+      <h1 class="text-h4 mb-3 text-primary">{{ project.title }}</h1>
       
       <v-img
         v-if="project.image"
@@ -10,12 +10,12 @@
         class="mb-4"
       ></v-img>
       
-      <p class="subtitle-1 mb-4">{{ project.description }}</p>
+      <p class="text-subtitle-1 mb-4">{{ project.description }}</p>
       <v-btn v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer">Link</v-btn>
     </v-col>
   </v-row>
   <div v-else>
-    <p class="subtitle-1">404 Page not found</p>
+    <p class="text-subtitle-1">404 Page not found</p>
   </div>
 </template>
 

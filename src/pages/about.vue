@@ -1,9 +1,9 @@
 <template>
-  <v-container class="text-primary" fluid>
+  <v-container fluid>
     <v-row class="mb-8">
       <v-col cols="12">
-        <h2 class="font-mono mb-2 text-h5">&lt;ABOUT ME&gt;</h2>
-        <div class="text">
+        <h2 class="mb-2 text-h5 font-weight-bold text-primary">About Me</h2>
+        <div class="text-body-1">
           My name is Michael Leong Jin Shun. I am a C++ enjoyer. Reading C++ concurrency in action and is currently
           obsessed with multithreading and lock-free programming.
         </div>
@@ -12,14 +12,14 @@
 
     <v-row class="mb-8">
       <v-col cols="12">
-        <h2 class="font-mono mb-4 text-h5">&lt;EXPERIENCES&gt;</h2>
+        <h2 class="mb-4 text-h5 font-weight-bold text-primary">Experiences</h2>
       </v-col>
       <v-col v-for="(experience, index) in experiences" :key="index" cols="12" md="6" class="text-left mb-4">
         <div class="font-weight-bold text-h6">{{ experience.date }}</div>
         <div class="text-subtitle-1">{{ experience.role }}</div>
         <div class="text-body-2">{{ experience.company }}</div>
         <div v-if="experience.description && experience.description.length > 0"
-          class="text-body-2 text-medium-emphasis pl-4 border-left">
+          class="text-body-2 text-medium-emphasis pl-4">
           <ul class="experience-list">
             <li v-for="(bullet, bIndex) in experience.description" :key="bIndex" class="mb-2">
               {{ bullet }}
@@ -31,28 +31,28 @@
 
     <v-row class="mb-8">
       <v-col cols="12">
-        <h2 class="font-mono mb-2 text-h5">&lt;EDUCATION&gt;</h2>
+        <h2 class="mb-2 text-h5 font-weight-bold text-primary">Education</h2>
         <div class="text-h6">Bachelor of Science in Computer Science National Taiwan Normal University</div>
       </v-col>
     </v-row>
 
     <v-row class="mb-8">
       <v-col cols="12">
-        <h2 class="font-mono mb-4 text-h5">&lt;LEARNING RESOURCES&gt;</h2>
+        <h2 class="mb-4 text-h5 font-weight-bold text-primary">Learning Resources</h2>
       </v-col>
       <v-col v-for="(learningResource, index) in learningResources" :key="index" cols="6" md="3"
         class="d-flex align-center justify-center mb-3">
-        <div class="text">{{ learningResource }}</div>
+        <div class="text-body-1">{{ learningResource }}</div>
       </v-col>
     </v-row>
 
     <v-row class="mb-8">
       <v-col cols="12">
-        <h2 class="font-mono mb-4 text-h5">&lt;SKILLS&gt;</h2>
+        <h2 class="mb-4 text-h5 font-weight-bold text-primary">Skills</h2>
       </v-col>
       <v-col v-for="(skill, index) in skills" :key="index" cols="6" md="3"
         class="d-flex align-center justify-center mb-3">
-        <v-icon :icon="skill.icon" class="mr-2"></v-icon>
+        <v-icon :icon="skill.icon" class="mr-2" :class="{ 'text-primary': skill.accent }"></v-icon>
         <span class="font-weight-medium text-h6">{{ skill.name }}</span>
       </v-col>
     </v-row>
@@ -108,30 +108,11 @@ export default {
 </script>
 
 <style scoped>
-.font-mono {
-  font-family: monospace;
-}
-
-.text-primary {
-  color: #9c27b0;
-  /* Adjust color to match the example */
-}
-
 .experience-list {
-  list-style-type: "– ";
-  /* Clean, modern bullet style */
-  padding-left: 0;
+  padding-left: 1.2em;
 }
 
 .experience-list li {
   line-height: 1.6;
-}
-
-.border-left {
-  border-left: 2px solid grey;
-}
-
-.opacity-70 {
-  opacity: 0.7;
 }
 </style>
