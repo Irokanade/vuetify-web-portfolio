@@ -16,7 +16,7 @@ export const projects = [
     title: "Limit Order Book",
     image: null,
     link: "https://github.com/Irokanade/mini-order-book",
-    description: `Limit Order Book built in C++ with a custom pool allocator and simple benchmarks. It is also ITCH API compatible.`,
+    description: `Limit Order Book built in C++ with a custom pool allocator and simple benchmarks.`,
   },
   {
     id: "iro-cache-simulator",
