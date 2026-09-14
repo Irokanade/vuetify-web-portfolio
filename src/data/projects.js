@@ -11,6 +11,13 @@ export const projects = [
     link: "https://github.com/Irokanade/iro-chess-gui",
     description: `This is a chess engine with a graphical user interface (GUI) that allows users to play chess against the engine. The engine uses a minimax algorithm to determine the best move for the player.`,
   },
+    {
+    id: "mini-order-book",
+    title: "Limit Order Book",
+    image: null,
+    link: "https://github.com/Irokanade/mini-order-book",
+    description: `Limit Order Book built in C++ with a custom pool allocator and simple benchmarks. It is also ITCH API compatible.`,
+  },
   {
     id: "iro-cache-simulator",
     title: "CPU Cache Simulator",
