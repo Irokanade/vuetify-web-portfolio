@@ -26,6 +26,13 @@ export const projects = [
     description: `Cachegrind inspired user space header only cpu cache simulator to count cache hits and cache miss of a program. This implementation uses C++23 and uses cpu_read and cpu_write functions directly in source code to count.`,
   },
   {
+    id: "iro-spsc-queue",
+    title: "Lock Free Single Producer Single Consumer Queue",
+    image: null,
+    link: "https://github.com/Irokanade/iro-spsc-queue",
+    description: `A header-only C++20 lock-free ring-buffer queue for single-producer, single-consumer use.`,
+  },
+  {
     id: "measure-l1-cache-latency",
     title: "Measure L1 Cache Latency",
     image: null,
