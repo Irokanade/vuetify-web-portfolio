@@ -47,6 +47,8 @@ export default {
 }
 
 .footer-divider {
+  /* footer centers its children, so an empty divider needs an explicit width */
+  width: 100%;
   max-width: 240px;
   margin: 8px 0;
 }

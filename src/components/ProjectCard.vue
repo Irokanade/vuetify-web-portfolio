@@ -1,9 +1,11 @@
 <template>
-  <v-card class="project-card" color="surface" variant="flat" :to="`/projects/${project}`">
+  <v-card class="project-card" color="surface" variant="flat">
     <v-img v-if="image" :src="image" height="160" cover class="project-image"></v-img>
 
     <div class="project-body">
-      <h3 class="project-title">{{ title }}</h3>
+      <h3 class="project-title">
+        <router-link :to="`/projects/${project}`" class="project-title-link">{{ title }}</router-link>
+      </h3>
       <p class="project-description text-muted">{{ description }}</p>
       <div v-if="metric" class="project-metric text-accent">{{ metric }}</div>
 
@@ -30,7 +32,6 @@
           variant="text"
           size="small"
           class="project-link"
-          @click.stop
         ></v-btn>
       </div>
     </div>
@@ -77,6 +78,7 @@ const isGithubLink = computed(() => props.link?.startsWith("https://github.com/"
 
 <style scoped>
 .project-card {
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
@@ -89,10 +91,34 @@ const isGithubLink = computed(() => props.link?.startsWith("https://github.com/"
     box-shadow 0.2s ease;
 }
 
-.project-card:hover {
+.project-card:hover,
+.project-card:focus-within {
   transform: translateY(-4px);
   border-color: rgba(var(--v-theme-accent), 0.6);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.project-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* stretched link: the title link covers the whole card, so the card stays
+   clickable without nesting the GitHub link inside another anchor */
+.project-title-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.project-title-link:focus-visible {
+  outline: none;
+}
+
+.project-link {
+  position: relative;
+  z-index: 1;
 }
 
 .project-image {
