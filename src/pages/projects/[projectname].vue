@@ -11,6 +11,11 @@
       ></v-img>
       
       <p class="text-subtitle-1 mb-4">{{ project.description }}</p>
+      <ul v-if="project.highlights" class="text-body-1 mb-4 highlight-list">
+        <li v-for="(highlight, index) in project.highlights" :key="index" class="mb-2">
+          {{ highlight }}
+        </li>
+      </ul>
       <v-btn v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer">Link</v-btn>
     </v-col>
   </v-row>
@@ -33,3 +38,13 @@ onMounted(() => {
 });
 
 </script>
+
+<style scoped>
+.highlight-list {
+  padding-left: 1.2em;
+}
+
+.highlight-list li {
+  line-height: 1.6;
+}
+</style>

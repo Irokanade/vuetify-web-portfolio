@@ -15,9 +15,9 @@
             </v-avatar>
             <h1 class="text-h4 mb-3 text-primary">Michael Leong Jin Shun</h1>
             <p class="text-subtitle-1 mb-4">
-              C++ enjoyer. 
-              Recommends C++ concurrency in action. 
-              Currently obsessed with lock-free programming.
+              Java backend engineer by day, C++ enjoyer by night.
+              Recommends C++ Concurrency in Action.
+              Currently obsessed with lock-free programming and low-latency systems.
             </p>
             <v-btn color="primary" to="/about">About me</v-btn>
           </v-col>

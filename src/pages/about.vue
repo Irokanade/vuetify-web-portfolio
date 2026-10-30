@@ -4,8 +4,9 @@
       <v-col cols="12">
         <h2 class="mb-2 text-h5 font-weight-bold text-primary">About Me</h2>
         <div class="text-body-1">
-          My name is Michael Leong Jin Shun. I am a C++ enjoyer. Reading C++ concurrency in action and is currently
-          obsessed with multithreading and lock-free programming.
+          My name is Michael Leong Jin Shun. I am a Java backend engineer by day and a C++ enjoyer by night. I'm reading
+          C++ Concurrency in Action and am currently obsessed with multithreading, lock-free programming, and
+          low-latency systems.
         </div>
       </v-col>
     </v-row>
@@ -32,7 +33,7 @@
     <v-row class="mb-8">
       <v-col cols="12">
         <h2 class="mb-2 text-h5 font-weight-bold text-primary">Education</h2>
-        <div class="text-h6">Bachelor of Science in Computer Science National Taiwan Normal University</div>
+        <div class="text-h6">Bachelor of Computer Science and Information Engineering, National Taiwan Normal University</div>
       </v-col>
     </v-row>
 
@@ -78,13 +79,13 @@ export default {
       experiences: [
         {
           date: "2025.01.01 - Present",
-          role: "Full Stack Developer",
+          role: "Full-stack Engineer",
           company: "Wisdom Garden Taiwan",
           description: [
             "Built and maintained backend services using the Java Ninja Framework, providing RESTful APIs for a Vue 2 frontend",
-            "Designed and developed event-driven microservices with Spring Boot and RabbitMQ for asynchronous communication",
-            "Implemented a custom, internal RabbitMQ Channel Pool to optimize channel reuse and throughput under framework constraints",
-            "Migrated selected asynchronous workflows to Java Virtual Threads (Project Loom), reducing thread management complexity and improving scalability"
+            "Designed event-driven microservices with Spring Boot and RabbitMQ for asynchronous communication",
+            "Built an in-house RabbitMQ channel pool, since the Ninja Framework has no built-in channel caching like Spring AMQP",
+            "Migrated Jetty 12 request handling to Java virtual threads (Project Loom); k6 load tests showed 15% higher successful throughput and peak-load errors cut from 7.3% to 0%"
           ]
         },
         {
@@ -92,9 +93,8 @@ export default {
           role: "DevOps Intern",
           company: "Wisdom Garden Taiwan",
           description: [
-            "Responsible for setting up and maintaining the infrastructure",
-            "Manged deployments and configurations",
-            "Setup monitoring and alerting systems",
+            "Deployed application releases to school servers and tested new features",
+            "Updated GitLab deployment configs and ran Ansible deployments with Docker Compose and Kubernetes",
           ],
         },
       ],
