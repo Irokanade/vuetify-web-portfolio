@@ -1,72 +1,65 @@
 <template>
-  <v-container fluid>
-    <v-row class="mb-8">
-      <v-col cols="12">
-        <h2 class="mb-2 text-h5 font-weight-bold text-primary">About Me</h2>
-        <div class="text-body-1">
-          My name is Michael Leong Jin Shun. I am a Java backend engineer by day and a C++ enjoyer by night. I'm reading
-          C++ Concurrency in Action and am currently obsessed with multithreading, lock-free programming, and
-          low-latency systems.
-        </div>
-      </v-col>
-    </v-row>
+  <v-container class="about-page py-12">
+    <section class="mb-12">
+      <h1 class="page-title mb-4">About me</h1>
+      <p class="text-body-1 about-intro">
+        My name is Michael Leong Jin Shun. I am a Java backend engineer by day and a C++ enjoyer by night. I'm reading
+        <em>C++ Concurrency in Action</em> and am currently obsessed with multithreading, lock-free programming, and
+        low-latency systems.
+      </p>
+    </section>
 
-    <v-row class="mb-8">
-      <v-col cols="12">
-        <h2 class="mb-4 text-h5 font-weight-bold text-primary">Experiences</h2>
-      </v-col>
-      <v-col v-for="(experience, index) in experiences" :key="index" cols="12" md="6" class="text-left mb-4">
-        <div class="font-weight-bold text-h6">{{ experience.date }}</div>
-        <div class="text-subtitle-1">{{ experience.role }}</div>
-        <div class="text-body-2">{{ experience.company }}</div>
-        <div v-if="experience.description && experience.description.length > 0"
-          class="text-body-2 text-medium-emphasis pl-4">
-          <ul class="experience-list">
-            <li v-for="(bullet, bIndex) in experience.description" :key="bIndex" class="mb-2">
-              {{ bullet }}
-            </li>
-          </ul>
-        </div>
-      </v-col>
-    </v-row>
+    <section class="mb-12">
+      <h2 class="section-title mb-6">Experience</h2>
+      <ExperienceTimeline :experiences="experiences" />
+    </section>
 
-    <v-row class="mb-8">
-      <v-col cols="12">
-        <h2 class="mb-2 text-h5 font-weight-bold text-primary">Education</h2>
-        <div class="text-h6">Bachelor of Computer Science and Information Engineering, National Taiwan Normal University</div>
-      </v-col>
-    </v-row>
+    <section class="mb-12">
+      <h2 class="section-title mb-4">Education</h2>
+      <div class="text-subtitle-1 font-weight-medium">{{ education.degree }}</div>
+      <div class="text-body-2 text-muted">{{ education.school }}</div>
+    </section>
 
-    <v-row class="mb-8">
-      <v-col cols="12">
-        <h2 class="mb-4 text-h5 font-weight-bold text-primary">Learning Resources</h2>
-      </v-col>
-      <v-col v-for="(learningResource, index) in learningResources" :key="index" cols="6" md="3"
-        class="d-flex align-center justify-center mb-3">
-        <div class="text-body-1">{{ learningResource }}</div>
-      </v-col>
-    </v-row>
+    <section class="mb-12">
+      <h2 class="section-title mb-4">Skills</h2>
+      <div class="d-flex flex-wrap ga-2">
+        <v-chip
+          v-for="(skill, index) in skills"
+          :key="index"
+          :prepend-icon="skill.icon"
+          variant="tonal"
+          color="primary"
+          label
+          >{{ skill.name }}</v-chip
+        >
+      </div>
+    </section>
 
-    <v-row class="mb-8">
-      <v-col cols="12">
-        <h2 class="mb-4 text-h5 font-weight-bold text-primary">Skills</h2>
-      </v-col>
-      <v-col v-for="(skill, index) in skills" :key="index" cols="6" md="3"
-        class="d-flex align-center justify-center mb-3">
-        <v-icon :icon="skill.icon" class="mr-2" :class="{ 'text-primary': skill.accent }"></v-icon>
-        <span class="font-weight-medium text-h6">{{ skill.name }}</span>
-      </v-col>
-    </v-row>
+    <section>
+      <h2 class="section-title mb-4">Learning resources</h2>
+      <v-row>
+        <v-col v-for="(learningResource, index) in learningResources" :key="index" cols="12" sm="6">
+          <v-card variant="flat" color="surface" class="resource-card pa-4 h-100">
+            <v-icon icon="mdi-book-open-page-variant-outline" color="accent" class="mb-2"></v-icon>
+            <div class="text-body-1">{{ learningResource }}</div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </section>
   </v-container>
 </template>
 
 <script>
+import { experiences, education } from "@/data/experience.js";
+import ExperienceTimeline from "@/components/ExperienceTimeline.vue";
+
 export default {
+  components: { ExperienceTimeline },
   data() {
     return {
       skills: [
-        { name: "", icon: "mdi-language-cpp" },
-        { name: "", icon: "mdi-language-c" },
+        { name: "C++", icon: "mdi-language-cpp" },
+        { name: "C", icon: "mdi-language-c" },
         { name: "Java", icon: "mdi-language-java" },
         { name: "Spring", icon: "mdi-leaf" },
         { name: "VueJS", icon: "mdi-vuejs" },
@@ -76,31 +69,13 @@ export default {
         { name: "Docker", icon: "mdi-docker" },
         { name: "Linux", icon: "mdi-linux" },
       ],
-      experiences: [
-        {
-          date: "2025.01.01 - Present",
-          role: "Full-stack Engineer",
-          company: "Wisdom Garden Taiwan",
-          description: [
-            "Built and maintained backend services using the Java Ninja Framework, providing RESTful APIs for a Vue 2 frontend",
-            "Designed event-driven microservices with Spring Boot and RabbitMQ for asynchronous communication",
-            "Built an in-house RabbitMQ channel pool, since the Ninja Framework has no built-in channel caching like Spring AMQP",
-            "Migrated Jetty 12 request handling to Java virtual threads (Project Loom); k6 load tests showed 15% higher successful throughput and peak-load errors cut from 7.3% to 0%"
-          ]
-        },
-        {
-          date: "2023.07.01 - 2023.08.31",
-          role: "DevOps Intern",
-          company: "Wisdom Garden Taiwan",
-          description: [
-            "Deployed application releases to school servers and tested new features",
-            "Updated GitLab deployment configs and ran Ansible deployments with Docker Compose and Kubernetes",
-          ],
-        },
-      ],
+      experiences,
+      education,
       learningResources: [
-        "C++ Concurrency in Action",
+        "C++ Concurrency in Action - Anthony Williams (2019)",
         "What Every Programmer Should Know About Memory - Ulrich Drepper (2007)",
+        "Memory Barriers: a Hardware View for Software Hackers - Paul E. McKenney (2010)",
+        "Rust Atomics and Locks - Mara Bos (2023)",
       ],
     };
   },
@@ -108,11 +83,30 @@ export default {
 </script>
 
 <style scoped>
-.experience-list {
-  padding-left: 1.2em;
+.about-page {
+  max-width: 900px;
 }
 
-.experience-list li {
-  line-height: 1.6;
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgb(var(--v-theme-primary));
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: rgb(var(--v-theme-primary));
+  border-bottom: 1px solid rgba(var(--v-theme-primary), 0.2);
+  padding-bottom: 8px;
+}
+
+.about-intro {
+  line-height: 1.7;
+}
+
+.resource-card {
+  border: 1px solid rgba(var(--v-theme-primary), 0.15);
+  border-radius: 8px;
 }
 </style>

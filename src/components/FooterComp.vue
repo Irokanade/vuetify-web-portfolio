@@ -1,6 +1,6 @@
 <!-- Footer.vue -->
 <template>
-  <v-footer color="primary" class="text-center d-flex flex-column" app>
+  <v-footer color="surface" class="footer text-center d-flex flex-column py-6">
     <div>
       <v-btn
         v-for="icon in icons"
@@ -8,14 +8,16 @@
         :icon="icon.icon"
         :href="icon.url"
         target="_blank"
-        class="mx-4"
+        :aria-label="icon.name"
+        rel="noopener noreferrer"
+        class="mx-2"
         variant="text"
       ></v-btn>
     </div>
 
     <v-divider class="footer-divider"></v-divider>
 
-    <div>{{ new Date().getFullYear() }} Michael Leong Jin Shun</div>
+    <div class="text-body-2 text-muted">© {{ new Date().getFullYear() }} Michael Leong Jin Shun</div>
   </v-footer>
 </template>
 
@@ -39,9 +41,13 @@ export default {
 </script>
 
 <style scoped>
+.footer {
+  flex: 0 0 auto;
+  border-top: 1px solid rgba(var(--v-theme-primary), 0.25);
+}
+
 .footer-divider {
-  border-color: currentColor;
-  opacity: 0.3;
-  width: 100%;
+  max-width: 240px;
+  margin: 8px 0;
 }
 </style>

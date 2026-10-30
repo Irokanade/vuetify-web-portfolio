@@ -4,10 +4,14 @@ import iroChess from "@/assets/img/iro-chess.png";
 import studyLoanCalc from "@/assets/img/study-loan-calculator.png";
 
 // description: one-line summary shown on project cards
+// metric: optional headline number shown on project cards
+// tags: tech/topic chips shown on project cards
 // highlights: bullet points shown on the project detail page
 export const projects = [
   {
     id: "mini-order-book",
+    metric: "18M msgs/sec · 41 ns p50 latency",
+    tags: ["C++20", "Low latency", "Market data"],
     title: "Limit Order Book",
     image: null,
     link: "https://github.com/Irokanade/mini-order-book",
@@ -22,6 +26,7 @@ export const projects = [
   },
   {
     id: "iro-spsc-queue",
+    tags: ["C++20", "Lock-free", "Concurrency"],
     title: "Lock-Free SPSC Queue",
     image: null,
     link: "https://github.com/Irokanade/iro-spsc-queue",
@@ -35,6 +40,8 @@ export const projects = [
   },
   {
     id: "iro-cache-simulator",
+    metric: "64x more L1D misses: column- vs row-major",
+    tags: ["C++", "MESI", "Computer architecture"],
     title: "CPU Cache Simulator",
     image: null,
     link: "https://github.com/Irokanade/iro-cache-simulator",
@@ -48,6 +55,7 @@ export const projects = [
   },
   {
     id: "iro-chess",
+    tags: ["C", "C++", "Java", "JNI"],
     title: "Chess Engine with GUI",
     image: iroChess,
     link: "https://github.com/Irokanade/iro-chess-gui",
@@ -61,6 +69,7 @@ export const projects = [
   },
   {
     id: "measure-l1-cache-latency",
+    tags: ["C++", "Microbenchmark"],
     title: "Measure L1 Cache Latency",
     image: null,
     link: "https://github.com/Irokanade/measure-l1-cache-latency",
@@ -73,6 +82,7 @@ export const projects = [
   },
   {
     id: "multidimensional-dental-image-segmentation-and-processing",
+    tags: ["Python", "YOLO", "SAM"],
     title: "Dental Image Segmentation",
     image: dentalImageProject,
     description: `Senior project (2023–2024): detecting and segmenting teeth in dental images with YOLO and SAM.`,
@@ -84,6 +94,7 @@ export const projects = [
   },
   {
     id: "software-engineering-course",
+    tags: ["Vue.js", "Element Plus"],
     title: "NTNU Course Application Web App",
     image: softEngProject,
     description: `Team project: front-end for an NTNU course application web app.`,
@@ -94,6 +105,7 @@ export const projects = [
   },
   {
     id: "portfolio-website",
+    tags: ["Vue 3", "Vuetify"],
     title: "Portfolio Website",
     image: null,
     link: "https://github.com/Irokanade/vuetify-web-portfolio",
@@ -101,6 +113,7 @@ export const projects = [
   },
   {
     id: "study-loan-calculator",
+    tags: ["HTML", "JavaScript"],
     title: "Study Loan Calculator",
     image: studyLoanCalc,
     link: "/study-loan-calculator.html",

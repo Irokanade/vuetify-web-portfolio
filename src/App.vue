@@ -10,13 +10,12 @@
 </template>
 
 <script lang="ts" setup>
-import { inject } from '@vercel/analytics';
+// Vue integration tracks vue-router navigations as page views, which plain inject() does not
+import { Analytics } from "@vercel/analytics/vue";
 import { onMounted } from "vue";
 import { useTheme } from "vuetify";
 import NavBar from "./components/NavBar.vue";
 import FooterComp from "./components/FooterComp.vue";
-
-inject();
 
 const theme = useTheme();
 
@@ -25,3 +24,13 @@ onMounted(() => {
   theme.global.name.value = prefersDark ? "dark" : "light";
 });
 </script>
+
+<style>
+:root {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+</style>

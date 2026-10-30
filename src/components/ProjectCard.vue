@@ -1,23 +1,50 @@
 <template>
-  <v-card
-    class="project-card"
-    :style="{ backgroundImage: `url(${image})` }"
-    elevation="2"
-    :to="`/projects/${project}`"
-  >
-    <v-card-title class="project-title">{{ title }}</v-card-title>
-    <v-card-subtitle class="project-subtitle">{{
-      description
-    }}</v-card-subtitle>
+  <v-card class="project-card" color="surface" variant="flat" :to="`/projects/${project}`">
+    <v-img v-if="image" :src="image" height="160" cover class="project-image"></v-img>
+
+    <div class="project-body">
+      <h3 class="project-title">{{ title }}</h3>
+      <p class="project-description text-muted">{{ description }}</p>
+      <div v-if="metric" class="project-metric text-accent">{{ metric }}</div>
+
+      <div class="project-footer">
+        <div v-if="tags.length" class="project-tags">
+          <v-chip
+            v-for="tag in tags"
+            :key="tag"
+            size="small"
+            variant="tonal"
+            color="primary"
+            label
+            class="project-tag"
+            >{{ tag }}</v-chip
+          >
+        </div>
+        <v-btn
+          v-if="link"
+          :href="link"
+          target="_blank"
+          rel="noopener noreferrer"
+          :icon="isGithubLink ? 'mdi-github' : 'mdi-open-in-new'"
+          :aria-label="isGithubLink ? 'GitHub repository' : 'Open project'"
+          variant="text"
+          size="small"
+          class="project-link"
+          @click.stop
+        ></v-btn>
+      </div>
+    </div>
   </v-card>
 </template>
 
 <script setup>
+import { computed } from "vue";
+
 // Define the props for the ProjectCard component
 const props = defineProps({
   image: {
     type: String,
-    required: true,
+    default: null,
   },
   project: {
     type: String,
@@ -31,54 +58,91 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  link: {
+    type: String,
+    default: null,
+  },
+  metric: {
+    type: String,
+    default: null,
+  },
+  tags: {
+    type: Array,
+    default: () => [],
+  },
 });
+
+const isGithubLink = computed(() => props.link?.startsWith("https://github.com/"));
 </script>
 
 <style scoped>
 .project-card {
-  background-size: cover;
-  background-position: center;
-  color: white;
-  min-height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  border-radius: 5px;
-  overflow: hidden;
-  text-align: center;
-  padding: 16px;
-  cursor: pointer;
+  height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(var(--v-theme-primary), 0.15);
+  border-radius: 8px;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .project-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
+  border-color: rgba(var(--v-theme-accent), 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
-.project-title,
-.project-subtitle {
-  white-space: normal;
-  word-wrap: break-word;
+.project-image {
+  border-bottom: 1px solid rgba(var(--v-theme-primary), 0.15);
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+  text-align: left;
 }
 
 .project-title {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.15rem;
+  font-weight: 600;
   margin-bottom: 8px;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 4px 8px;
-  border-radius: 4px;
 }
 
-.project-subtitle {
+.project-description {
   font-size: 0.9rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 4px 8px;
-  border-radius: 4px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.project-metric {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* pushes tags to the bottom so cards in a row line up */
+.project-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
 }
 </style>

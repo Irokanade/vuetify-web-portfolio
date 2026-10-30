@@ -21,8 +21,11 @@ export default createVuetify({
         colors: {
           primary: "#00599c",
           secondary: "#004482",
+          // amber accent: complement of C++ blue, reserved for metrics and highlights
+          accent: "#b45309",
+          muted: "#4a6075",
           background: "#ffffff",
-          surface: "#ffffff",
+          surface: "#f4f7fb",
         },
       },
       dark: {
@@ -30,6 +33,8 @@ export default createVuetify({
         colors: {
           primary: "#659ad2",
           secondary: "#004482",
+          accent: "#f0a030",
+          muted: "#8fa6bd",
           background: "#071826",
           surface: "#0d2438",
         },
